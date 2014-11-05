@@ -15,8 +15,9 @@ Flag async
   Description: build the Core/Async library
   Default: false
 
-Library "xen-api-client"
+Library XenAPI
   CompiledObject:     best
+  Pack:               true
   Path: lib
   Findlibname: xen-api-client
   Modules: API,	Api_errors, Api_messages, Client, Date, Xen_api, Event_helper, Event_types
@@ -27,7 +28,7 @@ Library "xen-api-client-lwt"
   Build$: flag(lwt)
   Install$: flag(lwt)
   Path: lwt
-  Findlibparent: xen-api-client
+  Findlibparent: XenAPI
   Findlibname: lwt
   Modules: Xen_api_lwt_unix, Data_channel, Cohttp_unbuffered_io, Disk
   BuildDepends:	xen-api-client, rpclib, xmlm, lwt, lwt.ssl, lwt.unix, cohttp, uri, cstruct, cstruct.lwt, re.str
@@ -37,7 +38,7 @@ Library "xen-api-client-async"
   Build$: flag(async)
   Install$: flag(async)
   Path: async
-  Findlibparent: xen-api-client
+  Findlibparent: XenAPI
   Findlibname: async
   Modules: Xen_api_async_unix
   BuildDepends:	xen-api-client, xmlm, core, async, async_unix, rpclib, cohttp, uri, threads

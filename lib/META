@@ -1,13 +1,13 @@
 # OASIS_START
-# DO NOT EDIT (digest: df518755ef6f18bd21deaee3234dd0f2)
+# DO NOT EDIT (digest: cf811713a4cfd8003f873c1f7c1fbdd0)
 version = "0.9.7"
 description = "Xen API client"
 requires = "xmlm rpclib cohttp"
-archive(byte) = "xen-api-client.cma"
-archive(byte, plugin) = "xen-api-client.cma"
-archive(native) = "xen-api-client.cmxa"
-archive(native, plugin) = "xen-api-client.cmxs"
-exists_if = "xen-api-client.cma"
+archive(byte) = "XenAPI.cma"
+archive(byte, plugin) = "XenAPI.cma"
+archive(native) = "XenAPI.cmxa"
+archive(native, plugin) = "XenAPI.cmxs"
+exists_if = "XenAPI.cma"
 package "lwt" (
  version = "0.9.7"
  description = "Xen API client"

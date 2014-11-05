@@ -11,6 +11,7 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU Lesser General Public License for more details.
  *)
+open XenAPI
 
 val make: ?timeout:float -> string -> Rpc.call -> Rpc.response Lwt.t
 (** [make ?timeout uri] returns an 'rpc' function which can be
@@ -23,9 +24,10 @@ val make_json: ?timeout:float -> string -> Rpc.call -> Rpc.response Lwt.t
 include (module type of (Client.ClientF(Lwt)))
 
 module Lwt_unix_IO : sig
-
-  type ic = (unit -> unit Lwt.t) * Lwt_io.input_channel
-  type oc = (unit -> unit Lwt.t) * Lwt_io.output_channel
+  include Xen_api.IO
+    with type ic = (unit -> unit Lwt.t) * Lwt_io.input_channel
+    and  type oc = (unit -> unit Lwt.t) * Lwt_io.output_channel
+    and  type 'a t = 'a Lwt.t
 
   val open_connection: Uri.t -> ((ic * oc), exn) Xen_api.result Lwt.t
 end

@@ -13,7 +13,7 @@
  *)
 
 open Lwt
-
+open XenAPI
 open Xen_api
 open Xen_api_lwt_unix
 
