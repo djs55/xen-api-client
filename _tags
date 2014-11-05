@@ -1,5 +1,5 @@
 # OASIS_START
-# DO NOT EDIT (digest: 0899327dd01f5b8dda52fbb04197a88b)
+# DO NOT EDIT (digest: fc391821603718028937b2743dd676dd)
 # Ignore VCS directories, you can use the same kind of rule outside
 # OASIS_START/STOP if you want to exclude directories that contains
 # useless stuff for the build process
@@ -25,6 +25,7 @@ true: annot, bin_annot
 "lib/event_helper.cmx": for-pack(XenAPI)
 "lib/event_types.cmx": for-pack(XenAPI)
 <lib/*.ml{,i,y}>: pkg_cohttp
+<lib/*.ml{,i,y}>: pkg_re.str
 <lib/*.ml{,i,y}>: pkg_rpclib
 <lib/*.ml{,i,y}>: pkg_xmlm
 # Library xen-api-client-lwt
@@ -46,6 +47,7 @@ true: annot, bin_annot
 <async/*.ml{,i,y}>: pkg_async_unix
 <async/*.ml{,i,y}>: pkg_cohttp
 <async/*.ml{,i,y}>: pkg_core
+<async/*.ml{,i,y}>: pkg_re.str
 <async/*.ml{,i,y}>: pkg_rpclib
 <async/*.ml{,i,y}>: pkg_threads
 <async/*.ml{,i,y}>: pkg_uri
@@ -54,11 +56,13 @@ true: annot, bin_annot
 # Executable xen_api_test
 <lib_test/xen_api_test.{native,byte}>: pkg_cohttp
 <lib_test/xen_api_test.{native,byte}>: pkg_oUnit
+<lib_test/xen_api_test.{native,byte}>: pkg_re.str
 <lib_test/xen_api_test.{native,byte}>: pkg_rpclib
 <lib_test/xen_api_test.{native,byte}>: pkg_xmlm
 <lib_test/xen_api_test.{native,byte}>: use_XenAPI
 <lib_test/*.ml{,i,y}>: pkg_cohttp
 <lib_test/*.ml{,i,y}>: pkg_oUnit
+<lib_test/*.ml{,i,y}>: pkg_re.str
 <lib_test/*.ml{,i,y}>: pkg_rpclib
 <lib_test/*.ml{,i,y}>: pkg_xmlm
 <lib_test/*.ml{,i,y}>: use_XenAPI
@@ -81,6 +85,7 @@ true: annot, bin_annot
 <async_test/list_vms.{native,byte}>: pkg_async_unix
 <async_test/list_vms.{native,byte}>: pkg_cohttp
 <async_test/list_vms.{native,byte}>: pkg_core
+<async_test/list_vms.{native,byte}>: pkg_re.str
 <async_test/list_vms.{native,byte}>: pkg_rpclib
 <async_test/list_vms.{native,byte}>: pkg_threads
 <async_test/list_vms.{native,byte}>: pkg_uri
@@ -91,6 +96,7 @@ true: annot, bin_annot
 <async_test/*.ml{,i,y}>: pkg_async_unix
 <async_test/*.ml{,i,y}>: pkg_cohttp
 <async_test/*.ml{,i,y}>: pkg_core
+<async_test/*.ml{,i,y}>: pkg_re.str
 <async_test/*.ml{,i,y}>: pkg_rpclib
 <async_test/*.ml{,i,y}>: pkg_threads
 <async_test/*.ml{,i,y}>: pkg_uri
@@ -102,6 +108,7 @@ true: annot, bin_annot
 <event_test/event_test.{native,byte}>: pkg_async_unix
 <event_test/event_test.{native,byte}>: pkg_cohttp
 <event_test/event_test.{native,byte}>: pkg_core
+<event_test/event_test.{native,byte}>: pkg_re.str
 <event_test/event_test.{native,byte}>: pkg_rpclib
 <event_test/event_test.{native,byte}>: pkg_threads
 <event_test/event_test.{native,byte}>: pkg_uri
@@ -112,6 +119,7 @@ true: annot, bin_annot
 <event_test/*.ml{,i,y}>: pkg_async_unix
 <event_test/*.ml{,i,y}>: pkg_cohttp
 <event_test/*.ml{,i,y}>: pkg_core
+<event_test/*.ml{,i,y}>: pkg_re.str
 <event_test/*.ml{,i,y}>: pkg_rpclib
 <event_test/*.ml{,i,y}>: pkg_threads
 <event_test/*.ml{,i,y}>: pkg_uri
