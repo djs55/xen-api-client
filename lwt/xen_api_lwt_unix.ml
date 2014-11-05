@@ -56,6 +56,14 @@ module Lwt_unix_IO = struct
 		Ssl.init ();
 		Ssl.create_context Ssl.SSLv23 Ssl.Client_context
 
+	let _socket_equals = "socket="
+	let startswith prefix x =
+		let prefix' = String.length prefix and x' = String.length x in
+		prefix' <= x' && (String.sub x 0 prefix' = prefix)
+	let after prefix x =
+		let prefix' = String.length prefix and x' = String.length x in
+		String.sub x prefix' (x' - prefix')
+
 	let open_connection uri =
 		let domain_addr_t = match Uri.host uri with
 			| Some host ->
@@ -76,12 +84,14 @@ module Lwt_unix_IO = struct
 		let port = match Uri.port uri with
 			| Some x -> x
 			| None -> if ssl then 443 else 80 in
-		lwt domain, sockaddr = match Uri.scheme uri with
-			| Some "file" ->
-				return (Unix.PF_UNIX, Unix.ADDR_UNIX (Uri.path uri))
-			| Some "http" | Some "https" ->
-				lwt domain, addr = domain_addr_t in
-				return (domain, Unix.ADDR_INET(addr, port))
+		lwt domain, sockaddr = match Uri.scheme uri, Uri.host uri with
+			| Some "http", Some host
+			| Some "https", Some host ->
+				if startswith _socket_equals host
+				then return (Unix.PF_UNIX, Unix.ADDR_UNIX (after _socket_equals host))
+				else 
+					lwt domain, addr = domain_addr_t in
+					return (domain, Unix.ADDR_INET(addr, port))
 			| _ -> assert false in
 
 		if ssl then begin
