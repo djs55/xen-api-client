@@ -95,6 +95,16 @@ let counter = ref 0
 			"content-length", string_of_int (String.length body);
 			"connection", "keep-alive";
 		] in
+		let headers = match Uri.userinfo t.uri with
+		| None -> headers
+		| Some x ->
+			begin match Re_str.bounded_split_delim (Re_str.regexp_string ":") x 2 with
+			| [ user; pass ] ->
+				let b = Cohttp.Auth.(to_string (Basic (user, pass))) in
+				Cohttp.Header.add headers "authorization" b
+			| _ ->
+			failwith (Printf.sprintf "I don't know how to handle authentication for %s (try scheme://user:password@host/path)" (Uri.to_string t.uri));
+			end in
 		let request = Cohttp.Request.make ~meth:`POST ~version:`HTTP_1_1 ~headers t.uri in
 		Request.write (fun req oc -> Request.write_body req oc body) request oc
 		>>= fun () ->

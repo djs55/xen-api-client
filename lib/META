@@ -1,8 +1,8 @@
 # OASIS_START
-# DO NOT EDIT (digest: cf811713a4cfd8003f873c1f7c1fbdd0)
+# DO NOT EDIT (digest: c40f523eca0ceb9470b3cbef47d06399)
 version = "0.9.7"
 description = "Xen API client"
-requires = "xmlm rpclib cohttp"
+requires = "xmlm rpclib cohttp re.str"
 archive(byte) = "XenAPI.cma"
 archive(byte, plugin) = "XenAPI.cma"
 archive(native) = "XenAPI.cmxa"
